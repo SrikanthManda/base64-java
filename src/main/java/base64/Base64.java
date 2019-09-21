@@ -50,6 +50,9 @@ public class Base64 {
 		int inTxtLen = inTxt.length();
 		for (int i = 0; i < inTxtLen; i++) {
 			char x = inTxt.charAt(i);
+			if (x == '\n' || x == '\r') {
+				continue;
+			}
 			int j = base64Chars.indexOf(x);
 			if (j == -1) {
 				if (x == '=') {
@@ -62,18 +65,25 @@ public class Base64 {
 			}
 		}
 		int binaryTxtLen = binaryTxt.length();
-		for (int i = 0; i < binaryTxtLen; i += 8) {
-			if (i + 8 <= binaryTxtLen) {
-				outTxt.append(toChar(binaryTxt.subSequence(i, i + 8)));
-			} else {
-				outTxt.append(toChar(binaryTxt.subSequence(i, binaryTxtLen)
-						+ String.format("%" + (8 - (binaryTxtLen - i)) + "s", ' ').replace(' ', '0')));
-			}
+		for (int i = 0; i + 8 <= binaryTxtLen; i += 8) {
+			outTxt.append(toChar(binaryTxt.subSequence(i, i + 8)));
 		}
 		return outTxt.toString();
 	}
 
 	public static void main(String[] args) {
-		
+		if (args.length != 2) {
+			throw new IllegalArgumentException("Invalid number of arguments: [encode|decode] <string>");
+		} else {
+			String decode = new String("decode");
+			String encode = new String("encode");
+			if (args[0].equals(decode) && args[0].equals(encode)) {
+				throw new IllegalArgumentException("Invalid operation: not \"encode\" or \"decode\"");
+			} else if (args[0].equals(decode)) {
+				System.out.println(decode(args[1]));
+			} else {
+				System.out.println("Well, encode function is yet to be implemented");
+			}
+		}
 	}
 }

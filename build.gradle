@@ -31,6 +31,14 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
 }
 
+jar {
+  manifest {
+    attributes(
+      'Main-Class': 'base64.Base64'
+    )
+  }
+}
+
 application {
     // Define the main class for the application
     mainClassName = 'base64.Base64'
