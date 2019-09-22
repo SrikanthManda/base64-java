@@ -51,3 +51,10 @@ test {
     // Use junit platform for unit tests
     useJUnitPlatform()
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
