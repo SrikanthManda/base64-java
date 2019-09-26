@@ -51,4 +51,4 @@ jobs:
       - run: gradle jacocoTestReport
 
       - codecov/upload:
-          file: build/reports/jacoco/test/html
+          file: build/reports/jacoco/test/jacocoTestReport.xml
