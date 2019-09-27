@@ -82,6 +82,9 @@ class Base64Test {
 	@Tag("Unit")
 	void to6BitBinSeqNativeTest() {
 		assertThrows(InvalidBase64Character.class, () -> Base64.to6BitBinSeqNative(64));
+
+		assertAll(() -> assertEquals(Base64.to6BitBinSeqNative(02), "000010"),
+				() -> assertEquals(Base64.to6BitBinSeqNative(03), "000011"));
 	}
 
 	@Test
@@ -144,6 +147,16 @@ class Base64Test {
 				"ZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55IGNhcm5hbCBwbGVhc3VyZS4="), "Man is distinguished, not only by his reason, but by this singular passion from other animals, " + 
 						"which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable " + 
 						"generation of knowledge, exceeds the short vehemence of any carnal pleasure.");
+	}
+
+	@Test
+	@DisplayName("Main:")
+	@Tag("Integration")
+	void mainTest() {
+		String[] oneArgInput = {"random string"};
+		String[] twoArgInput = {"do what", "random string"};
+		assertThrows(IllegalArgumentException.class, () -> Base64.main(oneArgInput));
+		assertThrows(IllegalArgumentException.class, () -> Base64.main(twoArgInput));
 	}
 
 	@Disabled

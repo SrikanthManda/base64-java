@@ -77,7 +77,7 @@ public class Base64 {
 		} else {
 			String decode = new String("decode");
 			String encode = new String("encode");
-			if (args[0].equals(decode) && args[0].equals(encode)) {
+			if (!args[0].equals(decode) && !args[0].equals(encode)) {
 				throw new IllegalArgumentException("Invalid operation: not \"encode\" or \"decode\"");
 			} else if (args[0].equals(decode)) {
 				System.out.println(decode(args[1]));
