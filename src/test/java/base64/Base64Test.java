@@ -129,9 +129,11 @@ class Base64Test {
 	void mainTest() {
 		String[] oneArgInput = {"random string"};
 		String[] twoArgInput = {"do what", "random string"};
+		String[] decodeInvalidArgs = {"decode", "string invalid due to spaces"};
 
 		assertThrows(IllegalArgumentException.class, () -> Base64.main(oneArgInput));
 		assertThrows(IllegalArgumentException.class, () -> Base64.main(twoArgInput));
+		assertThrows(InvalidBase64Character.class, () -> Base64.main(decodeInvalidArgs));
 
 		final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 		// private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -141,15 +143,25 @@ class Base64Test {
 
 		System.setOut(new PrintStream(outContent));
 		// System.setErr(new PrintStream(errContent));
-
 		Base64.main(encodeArgs);
 		assertEquals("Well, encode function is yet to be implemented", outContent.toString());
-
-		// System.err.print("hello again");
-		// assertEquals("hello again", errContent.toString());
-
 		System.setOut(originalOut);
-//		System.setErr(originalErr);
+		//System.setErr(originalErr);
+	}
+
+	@Test
+	@DisplayName("Main Success:")
+	@Tag("Integration")
+	void mainTest2() {
+		String[] decodeValidArgs = {"decode", "YW55IGNhcm5hbCBwbGVhc3VyZS4="};
+		
+		final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		final PrintStream originalOut = System.out;
+		
+		System.setOut(new PrintStream(outContent));
+		Base64.main(decodeValidArgs);
+		assertEquals("any carnal pleasure.", outContent.toString());
+		System.setOut(originalOut);
 	}
 
 	@Disabled
