@@ -80,9 +80,9 @@ public class Base64 {
 			if (!args[0].equals(decode) && !args[0].equals(encode)) {
 				throw new IllegalArgumentException("Invalid operation: not \"encode\" or \"decode\"");
 			} else if (args[0].equals(decode)) {
-				System.out.println(decode(args[1]));
+				System.out.print(decode(args[1]));
 			} else {
-				System.out.println("Well, encode function is yet to be implemented");
+				System.out.print("Well, encode function is yet to be implemented");
 			}
 		}
 	}
