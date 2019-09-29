@@ -1,13 +1,15 @@
 package base64;
 
-public class Base64 {
+public final class Base64 {
+
+	private Base64() {};
 
 	private static final String base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz" + "0123456789"
 			+ "+" + "/";
 
 	static final Exception InvalidBase64Character = null;
 
-	public static final String to6BitBinSeqNative(int num) throws InvalidBase64Character {
+	public static String to6BitBinSeqNative(int num) throws InvalidBase64Character {
 		if (num > 63) {
 			throw new InvalidBase64Character("Invalid character in Base64 encoded string.");
 		} else {
@@ -20,7 +22,7 @@ public class Base64 {
 		}
 	}
 
-	public static final String to6BitBinSeq(int num) {
+	public static String to6BitBinSeq(int num) {
 		StringBuilder binaryNum = new StringBuilder();
 		int numBinBits = 1;
 		while (num >= 2) {
@@ -35,15 +37,15 @@ public class Base64 {
 		return binaryNum.reverse().toString();
 	}
 
-	public static final char toChar(CharSequence inBinaryChrSeq) {
+	public static char toChar(CharSequence inBinaryChrSeq) {
 		int charCode = 0;
 		for (int i = 0; i < 8; i++) {
-			charCode += (Integer.parseInt(String.valueOf(inBinaryChrSeq.charAt(i))) * (Math.pow(2, ((8 - i) - 1))));
+			charCode += Integer.parseInt(String.valueOf(inBinaryChrSeq.charAt(i))) * Math.pow(2, (8 - i) - 1);
 		}
 		return (char) charCode;
 	}
 
-	public static final String decode(CharSequence inTxt) throws InvalidBase64Character {
+	public static String decode(CharSequence inTxt) throws InvalidBase64Character {
 		StringBuilder outTxt = new StringBuilder();
 		StringBuilder binaryTxt = new StringBuilder();
 
@@ -75,9 +77,9 @@ public class Base64 {
 		if (args.length != 2) {
 			throw new IllegalArgumentException("Invalid number of arguments: [encode|decode] <string>");
 		} else {
-			String decode = new String("decode");
-			String encode = new String("encode");
-			if (!args[0].equals(decode) && !args[0].equals(encode)) {
+			// String decode = new String("decode");
+			String decode = "decode";
+			if (!args[0].equals(decode) && !args[0].equals("encode")) {
 				throw new IllegalArgumentException("Invalid operation: not \"encode\" or \"decode\"");
 			} else if (args[0].equals(decode)) {
 				System.out.print(decode(args[1]));

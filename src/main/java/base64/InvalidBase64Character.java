@@ -4,6 +4,7 @@ package base64;
 public class InvalidBase64Character extends RuntimeException {
 
 	public InvalidBase64Character() {
+		// Default constructor
 	}
 
 	public InvalidBase64Character(String message) {
