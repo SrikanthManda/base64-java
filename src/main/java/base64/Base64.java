@@ -7,8 +7,6 @@ public final class Base64 {
 	private static final String base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz" + "0123456789"
 			+ "+" + "/";
 
-	static final Exception InvalidBase64Character = null;
-
 	public static String to6BitBinSeqNative(int num) throws InvalidBase64Character {
 		if (num > 63) {
 			throw new InvalidBase64Character("Invalid character in Base64 encoded string.");
