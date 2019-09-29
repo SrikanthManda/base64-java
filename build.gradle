@@ -17,7 +17,7 @@ plugins {
 	id 'jacoco'
 
 	// PMD for static analysis
-	id 'pmd'
+	// id 'pmd'
 }
 
 repositories {
@@ -73,7 +73,7 @@ jacocoTestReport {
     }
 }
 
-pmdMain {
-    // ruleSet = "quickstart"
-    incrementalAnalysis = true
-}
+// pmdMain {
+//     ruleSet = "quickstart"
+//     incrementalAnalysis = true
+// }
