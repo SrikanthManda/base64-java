@@ -4,7 +4,7 @@ public final class Base64 {
 
 	private Base64() {};
 
-	private static final String base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz" + "0123456789"
+	private static final String BASE64CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "abcdefghijklmnopqrstuvwxyz" + "0123456789"
 			+ "+" + "/";
 
 	public static String to6BitBinSeqNative(int num) throws InvalidBase64Character {
@@ -53,7 +53,7 @@ public final class Base64 {
 			if (x == '\n' || x == '\r') {
 				continue;
 			}
-			int j = base64Chars.indexOf(x);
+			int j = BASE64CHARACTERS.indexOf(x);
 			if (j == -1) {
 				if (x == '=') {
 					break;
