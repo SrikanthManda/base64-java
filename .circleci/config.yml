@@ -52,3 +52,7 @@ jobs:
 
       - codecov/upload:
           file: build/reports/jacoco/test/jacocoTestReport.xml
+
+      - run:
+          name: Analyze on SonarCloud
+          command: gradle build sonarqube -Dsonar.projectKey="srikanthmanda_base64-decode" -Dsonar.organization="srikanthmanda" -Dsonar.host.url="https://sonarcloud.io"

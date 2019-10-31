@@ -15,6 +15,9 @@ plugins {
 	
 	// JaCoCo for code coverage
 	id 'jacoco'
+	
+	// SonarQube static analysis
+	id "org.sonarqube" version "2.7.1"
 
 	// PMD for static analysis
 	// id 'pmd'
