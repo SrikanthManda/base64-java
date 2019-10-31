@@ -48,7 +48,7 @@ jobs:
       - store_test_results:
           path: build/reports/tests/test
 
-      - run: gradle jacocoTestReport
+      - run: gradle jacocoTestReport coveralls
 
       - codecov/upload:
           file: build/reports/jacoco/test/jacocoTestReport.xml
